@@ -74,6 +74,9 @@ class KernelTests(TestCase):
         output_msgs = []
         while True:
             msg = run_sync(self.kc.iopub_channel.get_msg)(timeout=0.1)
+            print('='*50)
+            print(msg['msg_type'])
+            print('='*50)
             validate_message(msg, msg['msg_type'], msg_id)
             if msg['msg_type'] == 'status':
                 self.assertEqual(msg['content']['execution_state'], 'idle')
